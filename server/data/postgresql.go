@@ -45,13 +45,30 @@ func Connect() *sql.DB {
   db, err := sql.Open("postgres", psqlInfo)
   checkError(err)
 
+  err = db.Ping()
+  checkError(err)
+
+  fmt.Println("Connected to database")
+  return db
+}
+
+func CheckConnection(){
+  dbInfo := populateDBInfo()
+
+  port, err := strconv.Atoi(dbInfo.port)
+  checkError(err)
+
+  psqlInfo := fmt.Sprintf("host=%s port=%d user=%s"+" password=%s dbname=%s sslmode=disable", dbInfo.host, port, dbInfo.user, dbInfo.password, dbInfo.dbname)
+
+  db, err := sql.Open("postgres", psqlInfo)
+  checkError(err)
+
   defer db.Close()
 
   err = db.Ping()
   checkError(err)
 
   fmt.Println("Connected to database")
-  return db
 }
 
 func checkError(err error){
