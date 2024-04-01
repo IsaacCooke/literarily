@@ -40,7 +40,7 @@ func Connect() *sql.DB {
   port, err := strconv.Atoi(dbInfo.port)
   checkError(err)
 
-  psqlInfo := fmt.Sprintf("host=%s port=%d user=%s"+"password=%s dbname=%s sslmode=disable", dbInfo.host, port, dbInfo.user, dbInfo.password, dbInfo.dbname)
+  psqlInfo := fmt.Sprintf("host=%s port=%d user=%s"+" password=%s dbname=%s sslmode=disable", dbInfo.host, port, dbInfo.user, dbInfo.password, dbInfo.dbname)
 
   db, err := sql.Open("postgres", psqlInfo)
   checkError(err)

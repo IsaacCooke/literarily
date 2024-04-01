@@ -1,4 +1,4 @@
-package server
+package main
 
 import (
   "github.com/IsaacCooke/literarily/data"
@@ -6,5 +6,5 @@ import (
 
 func main(){
   data.Connect()
-  controllers.RunServer()
+  // controllers.RunServer()
 }
