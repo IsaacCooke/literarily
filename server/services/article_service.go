@@ -17,49 +17,12 @@ var getAllArticles = &graphql.Field {
     db := data.Connect()
     defer db.Close()
 
-    rows, err := db.Query("SELECT * FROM article JOIN writer ON article.writer_id = writer.id;")
+    rows, err := db.Query("SELECT * FROM article JOIN writer ON article.writer_id = writer.id ORDER BY date_uploaded DESC;")
     if err != nil {
       panic(err)
     }
 
-    var articles []models.Article
-
-    for rows.Next(){
-      var id int
-      var content string
-      var title string
-      var length int
-      var dateUploaded time.Time
-      var readCount int
-      var thumbnailUrl string
-      var writerID int
-      var firstName string
-      var lastName string
-      var profileUrl string
-
-      // TODO: Check if the columns match this data arrangement (very important!)
-      err = rows.Scan(&id, &content, &title, &length, &dateUploaded, &readCount, &thumbnailUrl, &writerID, &writerID, &firstName, &lastName, &profileUrl)
-
-      if err != nil {
-        panic(err)
-      }
-
-      articles = append(articles, models.Article{
-        ID: id,
-        Content: content,
-        Title: title,
-        Length: length,
-        DateUploaded: dateUploaded,
-        ReadCount: readCount,
-        ThumbnailUrl: thumbnailUrl,
-        Writer: models.Writer{
-          ID: writerID,
-          FirstName: firstName,
-          LastName: lastName,
-          ProfileUrl: profileUrl,
-        },
-      })
-    }
+    articles := getArticlesFromRows(rows)
 
     if articles == nil {
       return nil, fmt.Errorf("No articles found")
@@ -83,7 +46,7 @@ var getArticleByTitle = &graphql.Field{
     defer db.Close()
 
     var article models.Article
-    sqlStatement := `SELECT * FROM article JOIN writer ON article.writer_id = writer.id WHERE title = $1;`
+    sqlStatement := `SELECT * FROM article JOIN writer ON article.writer_id = writer.id WHERE title = $1 ORDER BY date_uploaded DESC;`
 
     row := db.QueryRow(sqlStatement, paramTitle)
 
@@ -114,4 +77,79 @@ var getArticleByTitle = &graphql.Field{
       return nil, err
     }
   },
+}
+
+//TODO: fix this function because it's not working
+var getArticlesByWriter = &graphql.Field {
+  Type: models.ArticleType,
+  Args: graphql.FieldConfigArgument{
+    "writerId": &graphql.ArgumentConfig{
+      Type: graphql.Int,
+    },
+  },
+  Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+    paramWriterId := p.Args["writerId"].(int)
+
+    db := data.Connect()
+    defer db.Close()
+
+    sqlStatement := `SELECT * FROM article JOIN writer ON article.writer_id = writer.id WHERE writer.id = $1 ORDER BY date_uploaded DESC;`
+
+    rows, err := db.Query(sqlStatement, paramWriterId)
+    if err != nil {
+      log.Panicln(err)
+    }
+
+    articles := getArticlesFromRows(rows)
+
+    if articles == nil {
+      return nil, fmt.Errorf("No articles found")
+    }
+
+    fmt.Println(articles)
+    return articles, nil
+  },
+}
+
+func getArticlesFromRows(rows *sql.Rows) []models.Article {
+  var articles []models.Article
+
+  for rows.Next(){
+    var id int
+    var content string
+    var title string
+    var length int
+    var dateUploaded time.Time
+    var readCount int
+    var thumbnailUrl string
+    var writerID int
+    var firstName string
+    var lastName string
+    var profileUrl string
+
+    // TODO: Check if the columns match this data arrangement (very important!)
+    err := rows.Scan(&id, &content, &title, &length, &dateUploaded, &readCount, &thumbnailUrl, &writerID, &writerID, &firstName, &lastName, &profileUrl)
+
+    if err != nil {
+      panic(err)
+    }
+
+    articles = append(articles, models.Article{
+      ID: id,
+      Content: content,
+      Title: title,
+      Length: length,
+      DateUploaded: dateUploaded,
+      ReadCount: readCount,
+      ThumbnailUrl: thumbnailUrl,
+      Writer: models.Writer{
+        ID: writerID,
+        FirstName: firstName,
+        LastName: lastName,
+        ProfileUrl: profileUrl,
+      },
+    })
+  }
+
+  return articles
 }

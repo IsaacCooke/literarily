@@ -6,6 +6,6 @@ import (
 )
 
 func main(){
-  data.Connect()
+  data.CheckConnection()
   services.RunServer()
 }

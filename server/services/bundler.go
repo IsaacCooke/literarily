@@ -10,8 +10,13 @@ import (
 var rootQuery = graphql.NewObject(graphql.ObjectConfig{
   Name: "Query",
   Fields: graphql.Fields{
+    // From article_service.go
     "getAllArticles": getAllArticles,
     "getArticleByTitle": getArticleByTitle,
+    "getArticlesByWriter": getArticlesByWriter,
+
+    // From writer_service.go
+    "getAllWriters": getAllWriters,
   },
 })
 
