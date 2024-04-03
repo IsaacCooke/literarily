@@ -1,5 +1,38 @@
 @import 'colors.scss';
+@import '../../app.css';
 
 .navColor {
-	background-color: $background-color;
+	background-color: $dark-red;
+}
+
+.nav-text {
+  color: $secondary-color;
+  padding: 10px;
+  font-family: "EB Garamond", serif;
+}
+
+@layer base {
+  .active-nav {
+    color: $secondary-color-lighter;
+  }
+}
+
+.logo-box {
+  padding-left: 10px;
+}
+
+.logo-title {
+  font-weight: bold;
+  font-size: 28px;
+  color: $white-text;
+}
+
+.logo-text {
+  color: $secondary-color;
+}
+
+.hamburger {
+  color: rgba($secondary-color, 0.5);
+  padding-right: 30px;
+  padding-left: 10px;
 }

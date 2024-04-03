@@ -1,5 +1,5 @@
 <script lang="ts">
-  import '../app.css'
+  import '../app.css';
 
   import Navbar from '$lib/navbar/Navbar.svelte';
   import Sidebar from '$lib/navbar/Sidebar.svelte';
@@ -19,5 +19,6 @@
   :global(body){
     padding: 0;
     background-color: rgb(202, 203, 204);
+    font-family: "EB Garamond", Arial;
   }
 </style>
