@@ -23,6 +23,5 @@
   :global(body){
     padding: 0;
     background-color: rgb(223, 224, 184);
-    font-family: "EB Garamond", Arial, serif;
   }
 </style>

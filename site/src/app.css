@@ -2,4 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
+/* ------FONTS------ */
+
+/* EB Garamond */
+
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('/fonts/EBGaramond.ttf') format('truetype');
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('/fonts/EBGaramondItalic.ttf') format('truetype');
+  font-style: italic;
+  font-weight: normal;
+}
+
+/* Snell */
+
+@font-face {
+  font-family: 'Snell';
+  src: url('/fonts/SnellBT-Regular.otf') format('opentype');
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Snell';
+  src: url('fonts/SnellBT-Bold.otf') format('opentype');
+  font-style: normal;
+  font-weight: bold;
+}
+
+body {
+  font-family: 'EB Garamond', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Snell';
+}

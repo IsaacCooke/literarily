@@ -10,7 +10,4 @@
 </script>
 
 <style lang="scss">
-  .my-class {
-    background: green;
-  }
 </style>
