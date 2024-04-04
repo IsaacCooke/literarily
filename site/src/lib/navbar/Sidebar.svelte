@@ -3,13 +3,13 @@
 	export let open = false;
 </script>
 
-<aside class="absolute w-full h-full navColor border-r-2 shadow-lg" class:open>
-	<nav class="p-12 text-xl">
-		<a href="/" class="block">Home</a>
-		<a href="/about" class="block">About</a>
-		<a href="/blog" class="block">Blog</a>
-    <a href="/my-top-picks" class="block">My Top Picks</a>
-		<a href="/contact" class="block">Contact</a>
+<aside class="absolute w-full h-full nav-color border-r-2 shadow-lg" class:open>
+	<nav class="p-12 text-xl sidebar-box">
+		<a href="/" class="block nav-text hover:active-nav">Home</a>
+		<a href="/about" class="block nav-text hover:active-nav">About</a>
+		<a href="/blog" class="block nav-text hover:active-nav">Blog</a>
+    <a href="/my-top-picks" class="block nav-text hover:active-nav">My Top Picks</a>
+		<a href="/contact" class="block nav-text hover:active-nav">Contact</a>
 	</nav>
 </aside>
 

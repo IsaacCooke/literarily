@@ -1,7 +1,7 @@
 @import 'colors.scss';
 @import '../../app.css';
 
-.navColor {
+.nav-color {
 	background-color: $dark-red;
 }
 
@@ -35,4 +35,14 @@
   color: rgba($secondary-color, 0.5);
   padding-right: 30px;
   padding-left: 10px;
+}
+
+.sidebar-box {
+  padding-top: 60px;
+  padding-left: 60px;
+}
+
+.footer {
+  width: 100%;
+  box-shadow: 0 50vh 0 50vh $dark-red;
 }

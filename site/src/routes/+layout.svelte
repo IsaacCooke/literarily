@@ -11,14 +11,18 @@
 <Sidebar bind:open />
 <Navbar bind:sidebar={open} />
 
+<div class="main">
+
 <slot />
 
 <Footer />
 
+</div>
+
 <style lang="postcss">
   :global(body){
     padding: 0;
-    background-color: rgb(202, 203, 204);
-    font-family: "EB Garamond", Arial;
+    background-color: rgb(223, 224, 184);
+    font-family: "EB Garamond", Arial, serif;
   }
 </style>
