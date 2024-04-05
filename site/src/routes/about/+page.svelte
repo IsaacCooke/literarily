@@ -9,7 +9,7 @@
   <div>
     <h1>À Propos</h1>
     <hr class="horizontal-line" />
-    <p>literarily /ˌlɪt.əˈrer.əl.i/</p>
+    <p><i>literarily</i> /ˌlɪt.əˈrer.əl.i/</p>
     <p>in a way that relates to literature.</p>
     <hr class="horizontal-line" />
     <p>Hello! I’m Elise. I'm a bilingual Theatre Studies and English student, and I write a lot. I also read a lot. And then, strangely enough, I write about what I read.</p>
